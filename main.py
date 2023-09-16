@@ -1,3 +1,26 @@
-from MlOpsProject import logger
+from src.MlOpsProject import logger
+from src.MlOpsProject.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from src.MlOpsProject.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 
-logger.info("welcome to logger. It can be configure latter")
+
+# STAGE_NAME = "Data Ingestion stage"
+# try:
+#    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+#    data_ingestion = DataIngestionTrainingPipeline()
+#    data_ingestion.main()
+#    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x\n")
+# except Exception as e:
+#         logger.exception(e)
+#         raise e
+
+
+STAGE_NAME = "Data Validation stage"
+
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = DataValidationTrainingPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x\n")
+except Exception as e:
+    logger.exception(e)
+    raise e

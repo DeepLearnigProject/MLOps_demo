@@ -8,7 +8,7 @@ __version__ = "0.0.0"
 
 REPO_NAME = "MLOps_demo"
 AUTHOR_USER_NAME = "DeepLearnigProject"
-SRC_REPO = "MLOps_demo"
+SRC_REPO = "MlOpsProject"
 AUTHOR_EMAIL = "sksan671deeplearning@gmail.com"
 
 
