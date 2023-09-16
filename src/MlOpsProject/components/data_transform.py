@@ -32,7 +32,7 @@ class DataTransform:
             if self.config.normalization:
                 norm_col = self.config.normalization_column
                 scaler = StandardScaler()
-                df[norm_col] = scaler.fit(df[norm_col])
+                df[norm_col] = scaler.fit_transform(df[norm_col])
                 logger.info("Scaler is done")
                 scaler_save_path  = Path(os.path.join(self.config.normalize_scaler_path,'StandardScaler.pcl'))
                 save_data_in_pickle(data=scaler,path=scaler_save_path)

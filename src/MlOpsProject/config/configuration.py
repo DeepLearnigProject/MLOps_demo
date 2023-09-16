@@ -144,8 +144,8 @@ class ConfigurationManager:
 
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer
-        params = self.params.ElasticNet
-        schema = self.schema.TARGET_COLUMN
+        params = self.params.model_trainer.ElasticNet
+        schema = self.schema
 
         create_directories([config.root_dir])
 
@@ -156,7 +156,7 @@ class ConfigurationManager:
             model_name=config.model_name,
             alpha=params.alpha,
             l1_ratio=params.l1_ratio,
-            target_column=schema.name
+            target_column=schema.TARGET_COLUMN.name
 
         )
 

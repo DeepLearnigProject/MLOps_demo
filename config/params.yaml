@@ -11,5 +11,8 @@ data_transform:
   stratify : True
   stratify_col : quality
 
-
+model_trainer:
+  ElasticNet:
+    alpha: 0.2
+    l1_ratio: 0.1
 
