@@ -164,7 +164,7 @@ class ConfigurationManager:
 
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
         config = self.config.model_evaluation
-        params = self.params.ElasticNet
+        params = self.params.model_trainer.ElasticNet
         schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
@@ -176,7 +176,7 @@ class ConfigurationManager:
             all_params=params,
             metric_file_name=config.metric_file_name,
             target_column=schema.name,
-            mlflow_uri="https://dagshub.com/entbappy/End-to-end-Machine-Learning-Project-with-MLflow.mlflow",
+            mlflow_uri="https://dagshub.com/DeepLearnigProject/MLOps_demo.mlflow",
 
         )
 
