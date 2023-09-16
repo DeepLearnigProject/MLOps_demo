@@ -15,13 +15,13 @@ data_validation:
   dataset_path: artifacts/winequality-red.csv
   STATUS_FILE: artifacts/data_validation/status.txt
 
-
+data_preparation:
+  root_dir: artifacts/data_preparation
+  dataset_path: artifacts/winequality-red.csv
 
 data_transformation:
   root_dir: artifacts/data_transformation
-  data_path: artifacts/winequality-red.csv
-
-
+  data_path: artifacts/data_preparation/dataset_prepared.csv
 
 model_trainer:
   root_dir: artifacts/model_trainer

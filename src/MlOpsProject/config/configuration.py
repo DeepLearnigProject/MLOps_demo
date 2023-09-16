@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Union, List
 from src.MlOpsProject.constants.constant import CONFIG_PATH,SCHEMA_PATH,PARAMAS_PATH
 from src.MlOpsProject.utils.common import read_yaml, create_directories
 
@@ -21,11 +22,22 @@ class DataValidationConfig:
     all_schema: dict
 
 
+@dataclass(frozen=True)
+class DataPreparationConfig:
+    root_dir : Path
+    dataset_path : Path
+    drop_column:Union[List[str], None]
 
 @dataclass(frozen=True)
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
+    normalization: bool
+    normalization_column :List[str]
+    normalize_scaler_path :Path
+    data_split_ratio : tuple
+    stratify : bool
+    stratify_col : str
 
 
 
@@ -96,14 +108,36 @@ class ConfigurationManager:
 
         return data_validation_config
 
+
+    def get_data_preparation_config(self) -> DataPreparationConfig:
+
+        config = self.config.data_preparation
+        drop_column = self.schema.DROP_COLUMNS
+
+        create_directories([config.root_dir])
+        data_Prepration_config = DataPreparationConfig(
+            root_dir=config.root_dir,
+            dataset_path=config.dataset_path,
+            drop_column = drop_column
+        )
+
+        return data_Prepration_config
+
     def get_data_transformation_config(self) -> DataTransformationConfig:
         config = self.config.data_transformation
+        data_transform_params = self.params.data_transform
 
         create_directories([config.root_dir])
 
         data_transformation_config = DataTransformationConfig(
             root_dir=config.root_dir,
             data_path=config.data_path,
+            normalization=data_transform_params.normalization,
+            normalization_column = data_transform_params.normalization_column,
+            data_split_ratio =data_transform_params.data_split_ratio,
+            normalize_scaler_path = data_transform_params.normalize_scaler_path,
+            stratify = data_transform_params.stratify,
+            stratify_col =  data_transform_params.stratify_col
         )
 
         return data_transformation_config

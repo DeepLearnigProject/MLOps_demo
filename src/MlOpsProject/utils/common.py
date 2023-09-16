@@ -8,7 +8,7 @@ from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
-
+import pickle
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -79,6 +79,17 @@ def load_json(path: Path) -> ConfigBox:
     logger.info(f"json file loaded succesfully from: {path}")
     return ConfigBox(content)
 
+@ensure_annotations
+def save_data_in_pickle(data, path: Path):
+    """save binary file
+
+    Args:
+        data (Any): data to be saved as binary
+        path (Path): path to binary file
+    """
+    with open(path, 'wb') as file:
+        pickle.dump(data,file)
+    logger.info(f"binary file saved at: {path}")
 
 @ensure_annotations
 def save_bin(data: Any, path: Path):

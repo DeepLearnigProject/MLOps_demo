@@ -1,1 +1,15 @@
-key : value
+data_transform:
+  normalization : True
+  normalization_column : ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar',
+                        'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density',
+                         'pH',  'alcohol']
+
+  normalize_scaler_path : artifacts/data_transformation
+  data_split_ratio :
+    - 0.8
+    - 0.2
+  stratify : True
+  stratify_col : quality
+
+
+
